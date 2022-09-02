@@ -1,0 +1,60 @@
+services:
+  catalog-api:
+    build:
+      context: D:\Projects\Microservice\eShop-services\src
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: Catalog.API
+      target: base
+    container_name: Catalog.API
+    depends_on:
+      sqldata:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      LogstashServerUrl: ''
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2
+      PATH_BASE: /catalog-api
+      SeqServerUrl: ''
+    image: devsharpeshop/catalog.api-linux-latest:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages --additionalProbingPath
+        /root/.nuget/fallbackpackages2  "/app/bin/Debug/net6.0/Catalog.API.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 5101
+      target: 80
+    - published: 9101
+      target: 81
+    tty: true
+    volumes:
+    - D:\Projects\Microservice\eShop-services\src\Services\Catalog\Catalog.API:/app:rw
+    - C:\Users\Mina\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Mina\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Mina\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files (x86)\DevExpress 21.2\Components\Offline Packages:/root/.nuget/fallbackpackages:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages2:ro
+    - C:\Users\Mina\.nuget\packages:/root/.nuget/packages:ro
+    - D:\Projects\Microservice\eShop-services\src:/src:rw
+  sqldata:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: P@ssw0rd
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+    - published: 5433
+      target: 1433
+    volumes:
+    - eshop-sqldata:/var/opt/mssql:rw
+version: '3.4'
+volumes:
+  eshop-sqldata:
+    external: false

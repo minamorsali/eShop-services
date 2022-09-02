@@ -1,0 +1,18 @@
+version: '3.4'
+
+#services:
+#  catalog.api:
+#    image: ${DOCKER_REGISTRY-}catalogapi
+#    build:
+#      context: .
+#      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+services:
+ sqldata:
+  image: mcr.microsoft.com/mssql/server:2019-latest
+ catalog-api:
+  image: ${REGISTRY:-eshop}/catalog.api-${PLATFORM:-linux}-${TAG:-latest}
+  build:
+   context: .
+   dockerfile: Services/Catalog/Catalog.API/Dockerfile
+  depends_on:
+   - sqldata

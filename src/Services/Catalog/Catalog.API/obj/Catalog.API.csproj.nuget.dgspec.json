@@ -4,20 +4,21 @@
     "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj": {
+    "D:\\Projects\\Microservice\\eShop-services\\src\\BuildingBlocks\\Logging\\Common.Logging\\Common.Logging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj",
-        "projectName": "Catalog.API",
-        "projectPath": "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj",
+        "projectUniqueName": "D:\\Projects\\Microservice\\eShop-services\\src\\BuildingBlocks\\Logging\\Common.Logging\\Common.Logging.csproj",
+        "projectName": "Common.Logging",
+        "projectPath": "D:\\Projects\\Microservice\\eShop-services\\src\\BuildingBlocks\\Logging\\Common.Logging\\Common.Logging.csproj",
         "packagesPath": "C:\\Users\\Mina\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\obj\\",
+        "outputPath": "D:\\Projects\\Microservice\\eShop-services\\src\\BuildingBlocks\\Logging\\Common.Logging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
+          "D:\\Projects\\Microservice\\eShop-services\\src\\NuGet.Config",
           "C:\\Users\\Mina\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
@@ -30,6 +31,7 @@
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,13 +50,139 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Serilog.Sinks.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Sinks.Seq": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj",
+        "projectName": "Catalog.API",
+        "projectPath": "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\Catalog.API.csproj",
+        "packagesPath": "C:\\Users\\Mina\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Microservice\\eShop-services\\src\\Services\\Catalog\\Catalog.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\Projects\\Microservice\\eShop-services\\src\\NuGet.Config",
+          "C:\\Users\\Mina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projects\\Microservice\\eShop-services\\src\\BuildingBlocks\\Logging\\Common.Logging\\Common.Logging.csproj": {
+                "projectPath": "D:\\Projects\\Microservice\\eShop-services\\src\\BuildingBlocks\\Logging\\Common.Logging\\Common.Logging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
-              "version": "[1.15.1, )"
+              "version": "[1.16.1, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Serilog.Enrichers.Environment": {
+              "target": "Package",
+              "version": "[2.2.1-dev-00787, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "Serilog.Sinks.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Sinks.Seq": {
+              "target": "Package",
+              "version": "[5.1.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.4.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,11 +7,33 @@
     <UserSecretsId>64c62c5a-226a-4674-987b-d1356cd5f8c0</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
+	  <PackageReference Include="Polly" Version="7.2.3" />
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	  <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.7" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7" />
+	  <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+	  <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.1-dev-00787" />
+	  <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+	  <PackageReference Include="Serilog.Sinks.Http" Version="8.0.0" />
+	  <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Logging\Common.Logging\Common.Logging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Domain\SeedWork\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

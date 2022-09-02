@@ -1,4 +1,8 @@
-﻿namespace eShop.Services.Catalog.CatalogAPI;
+﻿using Catalog.API.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
+namespace eShop.Services.Catalog.CatalogAPI;
 
 public class Startup
 {
@@ -10,7 +14,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddCustomMVC(Configuration).AddSwagger(Configuration);
+        services.AddCustomMVC(Configuration).AddSwagger(Configuration).AddCustomDbContext(Configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -62,6 +66,22 @@ public static class CustomExtensionMethods
                 Description = "The Catalog Microservice Http API. This is a Data-Driven/CRUD microservice sample"
             });
         });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddEntityFrameworkSqlServer().
+            AddDbContext<CatalogContext>(options =>
+            {
+                options.UseSqlServer(configuration["ConnectionString"],
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                    });
+            });
 
         return services;
     }

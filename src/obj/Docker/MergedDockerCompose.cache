@@ -1,0 +1,33 @@
+services:
+  catalog-api:
+    build:
+      context: D:\Projects\Microservice\eShop-services\src
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+    depends_on:
+      sqldata:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      LogstashServerUrl: ''
+      PATH_BASE: /catalog-api
+      SeqServerUrl: ''
+    image: devsharpeshop/catalog.api-linux-latest
+    ports:
+    - published: 5101
+      target: 80
+    - published: 9101
+      target: 81
+  sqldata:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: P@ssw0rd
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+    - published: 5433
+      target: 1433
+    volumes:
+    - eshop-sqldata:/var/opt/mssql:rw
+version: '3.4'
+volumes:
+  eshop-sqldata:
+    external: false
